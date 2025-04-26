@@ -5,40 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calcio Catania Story</title>
   <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { height: 100%; font-family: Georgia, serif; }
-    .hidden { display: none; }
-
-    /* Bande verticali sottili */
-    .bg-stripes {
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body, html { height:100%; font-family:Georgia, serif; }
+    .hidden { display:none; }
+    .container { height:100vh; display:flex; flex-direction:column; }
+    .container.bg-stripes {
       background: repeating-linear-gradient(
         to right,
-        #E00034 0%,  #E00034 10%,
-        #0072BB 10%, #0072BB 20%,
-        #E00034 20%, #E00034 30%,
-        #0072BB 30%, #0072BB 40%,
-        #E00034 40%, #E00034 50%,
-        #0072BB 50%, #0072BB 60%,
-        #E00034 60%, #E00034 70%,
-        #0072BB 70%, #0072BB 80%,
-        #E00034 80%, #E00034 90%,
-        #0072BB 90%, #0072BB 100%
+        #E00034 0%,#E00034 10%,
+        #0072BB 10%,#0072BB 20%,
+        #E00034 20%,#E00034 30%,
+        #0072BB 30%,#0072BB 40%,
+        #E00034 40%,#E00034 50%,
+        #0072BB 50%,#0072BB 60%,
+        #E00034 60%,#E00034 70%,
+        #0072BB 70%,#0072BB 80%,
+        #E00034 80%,#E00034 90%,
+        #0072BB 90%,#0072BB 100%
       );
     }
-
-    /* Layout base */
-    .container { height: 100vh; display: flex; flex-direction: column; }
-    header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; }
-    header img { height: 50px; }
-    header h1 { color: #FFF; font-size: 2rem; flex: 1; text-align: center; }
-
-    #welcome, #quiz, #results { flex: 1; }
-    #welcome .slogan { color: #FFF; text-align: center; margin: 1rem; font-style: italic; }
-    #welcome .controls { display: flex; justify-content: center; margin-top: 1rem; }
-    #welcome input, #quiz img, .controls button, .answers button { padding: 0.5rem; }
-    .answers { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-    #results { text-align: center; padding: 1rem; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:1rem; background: rgba(0,0,0,0.2); }
+    header img { height:50px; }
+    header h1 { flex:1; text-align:center; color:#FFF; font-size:2rem; margin:0; }
+    #welcome,#quiz,#results { flex:1; }
+    #welcome .slogan { color:#FFF; text-align:center; margin:1rem; font-style:italic; }
+    #welcome .controls { display:flex; justify-content:center; margin-top:1rem; }
+    #welcome input, #quiz img, .controls button, .answers button { padding:0.5rem; }
+    #quiz header { background:#FFF; padding:0.5rem 1rem; display:flex; justify-content:space-between; }
+    #quiz #timer { font-weight:bold; }
+    #quiz #question-img { display:block; margin:1rem auto; max-width:60%; border:2px solid #000; }
+    .answers { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; padding:0 1rem; }
+    .answers button { padding:0.5rem; font-size:1rem; }
+    #results { text-align:center; padding:1rem; background:#FFF; }
+    #results h2 { margin-bottom:1rem; }
+    #results button { padding:0.5rem 1rem; }
   </style>
 </head>
 <body>
@@ -56,7 +56,6 @@
         <button id="start-btn" disabled>Inizia Quiz ▶️</button>
       </div>
     </div>
-
     <!-- Quiz Screen -->
     <div id="quiz" class="hidden">
       <header>
@@ -71,7 +70,6 @@
         <button class="ans-btn" data-choice="3"></button>
       </div>
     </div>
-
     <!-- Results Screen -->
     <div id="results" class="hidden">
       <h2>Tempo scaduto!</h2>
@@ -79,21 +77,28 @@
       <button id="restart-btn">Ricomincia</button>
     </div>
   </div>
-
   <script>
-    // =========================================
-    // === INCOLLA QUI L'ARRAY QUESTIONS ===
-    // =========================================
     const questions = [
-      // Copia e incolla tutto questo array dal file `questions_array.txt` che ho generato:
-      // const questions = [
-      //   { name: 'Agazzi', file: 'Agazzi.jpg' },
-      //   ...
-      //   { name: 'Zeoli', file: 'Zeoli Michele.jpg' }
-      // ];
+      { name: 'Agazzi', file: 'Agazzi.jpg' },
+      { name: 'alberti', file: 'Alberti Renato.jpg' },
+      { name: 'Allegretto', file: 'Allegretto.jpg' },
+      { name: 'alvarez', file: 'alvarez.jpg' },
+      { name: 'ambrosi', file: 'ambrosi Alessandro.jpg' },
+      { name: 'anastasi', file: 'anastasi.jpg' },
+      { name: 'Anastasio', file: 'Anastasio.jpg' },
+      { name: 'Angiulli', file: 'Angiulli.jpg' },
+      { name: 'Aya', file: 'Aya.jpg' },
+      { name: 'Baggio', file: 'Baggio.jpg' },
+      { name: 'baiocco', file: 'baiocco.jpg' },
+      { name: 'Barisic', file: 'Barisic.jpg' },
+      { name: 'barlassina', file: 'barlassina.jpg' },
+      { name: 'Barrientos', file: 'Barrientos.jpg' },
+      { name: 'bearzot', file: 'bearzot.jpg' },
+      /* ... (inserisci qui tutte le altre righe generate) */
+      { name: 'Zavagno', file: 'Zavagno.jpg' },
+      { name: 'zeoli', file: 'Zeoli Michele.jpg' }
     ];
 
-    // Elementi
     const welcomeEl = document.getElementById('welcome');
     const quizEl    = document.getElementById('quiz');
     const resultsEl = document.getElementById('results');
@@ -106,13 +111,9 @@
     const finalScoreEl = document.getElementById('final-score');
     const restartBtn   = document.getElementById('restart-btn');
 
-    // Stato
     let timeLeft, score, currentIndex, timerId;
 
-    // Avvia quiz
-    nickInput.addEventListener('input', () => {
-      startBtn.disabled = !nickInput.value.trim();
-    });
+    nickInput.addEventListener('input', () => { startBtn.disabled = !nickInput.value.trim(); });
     startBtn.addEventListener('click', () => {
       score = 0; timeLeft = 45; currentIndex = 0;
       welcomeEl.classList.add('hidden'); quizEl.classList.remove('hidden');
@@ -131,15 +132,15 @@
       const q = questions[currentIndex % questions.length];
       imgEl.src = 'images/' + q.file;
       const opts = shuffle([q.name, ...getRandomNames(q.name, 3)]);
-      ansBtns.forEach((btn, i) => { btn.textContent = opts[i]; });
+      ansBtns.forEach((b, i) => b.textContent = opts[i]);
     }
 
     ansBtns.forEach(btn => btn.addEventListener('click', () => {
-      const selected = btn.textContent;
-      const correct = questions[currentIndex % questions.length].name;
-      if (selected === correct) score++;
-      scoreEl.textContent = score;
-      currentIndex++; if (timeLeft > 0) showQuestion();
+      const sel = btn.textContent;
+      const corr = questions[currentIndex % questions.length].name;
+      if (sel === corr) score++;
+      scoreEl.textContent = score; currentIndex++;
+      if (timeLeft > 0) showQuestion();
     }));
 
     function endQuiz() {
@@ -151,9 +152,8 @@
     restartBtn.addEventListener('click', () => location.reload());
 
     function shuffle(a) { return a.sort(() => Math.random() - 0.5); }
-    function getRandomNames(exclude, count) {
-      const names = questions.map(q=>q.name).filter(n=>n!==exclude);
-      return shuffle(names).slice(0, count);
+    function getRandomNames(ex, ct) {
+      return shuffle(questions.map(q => q.name).filter(n => n !== ex)).slice(0, ct);
     }
   </script>
 </body>
