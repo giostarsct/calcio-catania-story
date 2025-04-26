@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Calcio Catania Story</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body, html { height:100%; font-family: Georgia, serif; }
+    .container {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      height:100%;
+      background: linear-gradient(to bottom, #0072BB, #E00034);
+      color:white;
+      text-align:center;
+      padding:1rem;
+    }
+    header { display:flex; width:100%; max-width:800px; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+    header img { height:64px; }
+    h1 { font-size:2.5rem; }
+    p.slogan { margin:1rem 0; font-style:italic; font-size:1.25rem; line-height:1.4; }
+    .controls { margin-top:2rem; }
+    input { padding:0.5rem; border-radius:4px; border:none; min-width:200px; }
+    button {
+      padding:0.5rem 1rem;
+      margin-left:0.5rem;
+      border:none;
+      border-radius:4px;
+      background:white;
+      color:#0072BB;
+      font-family: Arial, sans-serif;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    button:disabled { opacity:0.5; cursor:not-allowed; }
+    footer { position:absolute; bottom:1rem; }
+    footer a { color:white; text-decoration:underline; font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://raw.githubusercontent.com/giostarsct/calcio-catania-story/main/public/download.png" alt="Logo Moderno">
+      <h1>Calcio Catania Story</h1>
+      <img src="https://raw.githubusercontent.com/giostarsct/calcio-catania-story/main/public/download (1).png" alt="Logo Storico">
+    </header>
+    <p class="slogan">Dalle Leggende alle meteore…<br>tutti innamorati di Catania</p>
+    <div class="controls">
+      <input id="nick" placeholder="Inserisci il tuo nickname">
+      <button id="start" disabled>Inizia Quiz ▶️</button>
+    </div>
+    <footer><a href="#">Regolamento</a></footer>
+  </div>
+
+  <script>
+    const inp = document.getElementById('nick');
+    const btn = document.getElementById('start');
+    inp.addEventListener('input', () => {
+      btn.disabled = !inp.value.trim();
+    });
+    btn.addEventListener('click', () => {
+      alert('Quiz in arrivo, ' + inp.value + '!');
+    });
+  </script>
+</body>
+</html>
