@@ -11,24 +11,32 @@
 
     /* Bande verticali rosso-azzurre */
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: repeating-linear-gradient(
-        to right,
-        #E00034 0%,   /* rosso */
-        #E00034 33.33%,
-        #0072BB 33.33%, /* azzurro */
-        #0072BB 66.66%,
-        #E00034 66.66%,
-        #E00034 100%
-      );
-      color: #FFF;
-      text-align: center;
-      padding: 1rem;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  /* bande verticali strette rosso/azzurro */
+  background: repeating-linear-gradient(
+    to right,
+    #E00034 0%,
+    #E00034 20%,
+    #0072BB 20%,
+    #0072BB 40%,
+    #E00034 40%,
+    #E00034 60%,
+    #0072BB 60%,
+    #0072BB 80%,
+    #E00034 80%,
+    #E00034 100%
+  );
+
+  color: #FFF;
+  text-align: center;
+  padding: 1rem;
+}
+
 
     /* Header con loghi e titolo */
     header {
