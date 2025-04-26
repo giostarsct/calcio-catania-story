@@ -1,13 +1,21 @@
-
-import React from 'react';
+import React, { useState } from 'react';
+import WelcomeScreen from './components/WelcomeScreen';
 
 function App() {
+  const [player, setPlayer] = useState(null);
+  const handleStart = (nickname) => setPlayer(nickname);
+
   return (
-    <div style={{ textAlign: 'center', padding: '2rem', backgroundColor: '#0066cc', height: '100vh', color: 'white' }}>
-      <h1>Calcio Catania Story</h1>
-      <h2>Dalle Leggende alle meteore... tutti innamorati di Catania</h2>
-      <p>Demo iniziale funzionante! 🚀</p>
-    </div>
+    <>
+      {!player
+        ? <WelcomeScreen onStart={handleStart} />
+        : (
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <h2>Quiz in arrivo, {player}!</h2>
+          </div>
+        )
+      }
+    </>
   );
 }
 
