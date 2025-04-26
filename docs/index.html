@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calcio Catania Story</title>
   <style>
-    /* Reset */
+    /* Reset base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html { height: 100%; font-family: Georgia, serif; }
 
-    /* Container principale con bande verticali */
+    /* Bande verticali rosso-azzurre */
     .container {
       display: flex;
       flex-direction: column;
@@ -99,45 +99,25 @@
 <body>
   <div class="container">
     <header>
-      <!-- Logo moderno -->
-      <img
-        src="https://raw.githubusercontent.com/giostarsct/calcio-catania-story/main/public/download.png"
-        alt="Logo Moderno"
-      />
+      <img src="logo-modern.png" alt="Logo Moderno">
       <h1>Calcio Catania Story</h1>
-      <!-- Logo storico -->
-      <img
-        src="https://raw.githubusercontent.com/giostarsct/calcio-catania-story/main/public/download%20(1).png"
-        alt="Logo Storico"
-      />
+      <img src="logo-historic.png" alt="Logo Storico">
     </header>
-
     <p class="slogan">
-      Dalle Leggende alle meteore…<br />
+      Dalle Leggende alle meteore…<br>
       tutti innamorati di Catania
     </p>
-
     <div class="controls">
-      <input id="nick" placeholder="Inserisci il tuo nickname" />
+      <input id="nick" placeholder="Inserisci il tuo nickname">
       <button id="start" disabled>Inizia Quiz ▶️</button>
     </div>
-
-    <footer>
-      <a href="#">Regolamento</a>
-    </footer>
+    <footer><a href="#">Regolamento</a></footer>
   </div>
-
   <script>
-    // Abilita/disabilita il pulsante in base al nickname
     const inp = document.getElementById('nick');
     const btn = document.getElementById('start');
-    inp.addEventListener('input', () => {
-      btn.disabled = !inp.value.trim();
-    });
-    // Demo: alert al click
-    btn.addEventListener('click', () => {
-      alert('Quiz in arrivo, ' + inp.value.trim() + '!');
-    });
+    inp.addEventListener('input', () => { btn.disabled = !inp.value.trim(); });
+    btn.addEventListener('click', () => { alert('Quiz in arrivo, ' + inp.value.trim() + '!'); });
   </script>
 </body>
 </html>
