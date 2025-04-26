@@ -1,67 +1,142 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calcio Catania Story</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body, html { height:100%; font-family: Georgia, serif; }
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { height: 100%; font-family: Georgia, serif; }
+
+    /* Container principale con bande verticali */
     .container {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      height:100%;
-      background: linear-gradient(to bottom, #0072BB, #E00034);
-      color:white;
-      text-align:center;
-      padding:1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: repeating-linear-gradient(
+        to right,
+        #E00034 0%,   /* rosso */
+        #E00034 33.33%,
+        #0072BB 33.33%, /* azzurro */
+        #0072BB 66.66%,
+        #E00034 66.66%,
+        #E00034 100%
+      );
+      color: #FFF;
+      text-align: center;
+      padding: 1rem;
     }
-    header { display:flex; width:100%; max-width:800px; justify-content:space-between; align-items:center; margin-bottom:1rem; }
-    header img { height:64px; }
-    h1 { font-size:2.5rem; }
-    p.slogan { margin:1rem 0; font-style:italic; font-size:1.25rem; line-height:1.4; }
-    .controls { margin-top:2rem; }
-    input { padding:0.5rem; border-radius:4px; border:none; min-width:200px; }
-    button {
-      padding:0.5rem 1rem;
-      margin-left:0.5rem;
-      border:none;
-      border-radius:4px;
-      background:white;
-      color:#0072BB;
+
+    /* Header con loghi e titolo */
+    header {
+      display: flex;
+      width: 100%;
+      max-width: 800px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    header img {
+      height: 64px;
+      width: auto;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    /* Slogan */
+    .slogan {
+      margin: 1rem 0;
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* Controlli (input + button) */
+    .controls {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+    }
+    .controls input {
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: none;
+      min-width: 200px;
+    }
+    .controls button {
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      background: #FFF;
+      color: #0072BB;
       font-family: Arial, sans-serif;
-      font-weight:bold;
-      cursor:pointer;
+      font-weight: bold;
+      cursor: pointer;
     }
-    button:disabled { opacity:0.5; cursor:not-allowed; }
-    footer { position:absolute; bottom:1rem; }
-    footer a { color:white; text-decoration:underline; font-size:0.9rem; }
+    .controls button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Footer */
+    footer {
+      position: absolute;
+      bottom: 1rem;
+    }
+    footer a {
+      color: #FFF;
+      text-decoration: underline;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <img src="https://raw.githubusercontent.com/giostarsct/calcio-catania-story/main/public/download.png" alt="Logo Moderno">
+      <!-- Logo moderno -->
+      <img
+        src="https://raw.githubusercontent.com/giostarsct/calcio-catania-story/main/public/download.png"
+        alt="Logo Moderno"
+      />
       <h1>Calcio Catania Story</h1>
-      <img src="https://raw.githubusercontent.com/giostarsct/calcio-catania-story/main/public/download (1).png" alt="Logo Storico">
+      <!-- Logo storico -->
+      <img
+        src="https://raw.githubusercontent.com/giostarsct/calcio-catania-story/main/public/download%20(1).png"
+        alt="Logo Storico"
+      />
     </header>
-    <p class="slogan">Dalle Leggende alle meteore…<br>tutti innamorati di Catania</p>
+
+    <p class="slogan">
+      Dalle Leggende alle meteore…<br />
+      tutti innamorati di Catania
+    </p>
+
     <div class="controls">
-      <input id="nick" placeholder="Inserisci il tuo nickname">
+      <input id="nick" placeholder="Inserisci il tuo nickname" />
       <button id="start" disabled>Inizia Quiz ▶️</button>
     </div>
-    <footer><a href="#">Regolamento</a></footer>
+
+    <footer>
+      <a href="#">Regolamento</a>
+    </footer>
   </div>
 
   <script>
+    // Abilita/disabilita il pulsante in base al nickname
     const inp = document.getElementById('nick');
     const btn = document.getElementById('start');
     inp.addEventListener('input', () => {
       btn.disabled = !inp.value.trim();
     });
+    // Demo: alert al click
     btn.addEventListener('click', () => {
-      alert('Quiz in arrivo, ' + inp.value + '!');
+      alert('Quiz in arrivo, ' + inp.value.trim() + '!');
     });
   </script>
 </body>
